@@ -14,7 +14,7 @@ class BoxCalculatorApp extends StatelessWidget {
     return MaterialApp(
       title: 'The Forklift Developer\'s Box Calculator',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,
       ),
       home: const BoxCalculatorHomePage(title: 'Forklift.dev: Box Calculator'),
