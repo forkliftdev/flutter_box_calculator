@@ -1,5 +1,7 @@
 # flutter_box_calculator
 
+I'll be honet. I vibe coded this. It's not perfect, but it works. I'll get in there and tweek the code. Make it right.
+
 A new Flutter project.
 
 ## Getting Started
