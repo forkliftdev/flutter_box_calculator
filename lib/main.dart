@@ -37,7 +37,7 @@ class _BoxCalculatorHomePageState extends State<BoxCalculatorHomePage> {
   final TextEditingController _piecesPerBoxController = TextEditingController();
 
   // State for the 'New Order' checkbox: true if everything is still remaining
-  bool _isNewOrder = true; 
+  bool _isNewOrder = false; 
 
   // --- Calculated Output Values ---
   int _boxesToPick = 0;
@@ -151,17 +151,6 @@ class _BoxCalculatorHomePageState extends State<BoxCalculatorHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    // We use a local variable to capture the calculated pieces to pick 
-    // to use in the output field, preventing state conflicts.
-    int piecesToPickDisplay = 0;
-    
-    // Re-run the calculation here to get the current value for the display
-    // (This is defensive, normally listeners handle it, but ensures the initial build has the correct value)
-    if (_piecesPerBoxController.text.isNotEmpty && int.tryParse(_piecesPerBoxController.text) != 0) {
-        final int neededToComplete = _totalOrderDelivered - (_boxesToPick * (int.tryParse(_piecesPerBoxController.text) ?? 1));
-        piecesToPickDisplay = _boxesToPick * (int.tryParse(_piecesPerBoxController.text) ?? 0);
-    }
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -284,21 +273,29 @@ class _BoxCalculatorHomePageState extends State<BoxCalculatorHomePage> {
   }
 
   /// Helper method to create a standardized input field
-  Widget _buildInputField({
-    required TextEditingController controller,
-    required String labelText,
-    bool enabled = true,
-  }) {
-    return TextFormField(
-      controller: controller,
-      keyboardType: TextInputType.number,
-      enabled: enabled,
-      decoration: InputDecoration(
-        labelText: labelText,
-        border: const OutlineInputBorder(),
-      ),
-    );
-  }
+ Widget _buildInputField({
+  required TextEditingController controller,
+  required String labelText,
+  String? description, // New parameter for the helper text. This made it nullable and optional
+  bool enabled = true,
+}) {
+  return TextFormField(
+    controller: controller,
+    keyboardType: TextInputType.number,
+    enabled: enabled,
+    decoration: InputDecoration(
+      labelText: labelText, // Keep this short (e.g., "Width")
+      
+      // The description goes here, outside the box
+      helperText: description,
+      helperMaxLines: 3, // Allows wrapping up to 3 lines
+      
+      labelStyle: Theme.of(context).textTheme.titleMedium,
+      border: const OutlineInputBorder(),
+    ),
+  );
+}
+
 
   /// Helper method to create a standardized output display box, with optional warning
   Widget _buildOutputField({
