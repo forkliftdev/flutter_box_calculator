@@ -1,5 +1,7 @@
 # flutter_box_calculator
 
+Here's the link to the app: <https://forkliftdev.github.io/flutter_box_calculator/>
+
 The Forklift Developer’s Percentage Helper
 In my day job, we forklift drivers across all four shifts kept running into the same problem. When a production line needed ten thousand units and a pallet held thirty two thousand, it was way easier for us, alegedly, overworked material handlers to just drop off a full pallet and let the reconciling department deal with the overage. Not ideal, but realistic.
 
